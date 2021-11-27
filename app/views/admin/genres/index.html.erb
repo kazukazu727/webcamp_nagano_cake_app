@@ -1,0 +1,44 @@
+<% if flash[:notice]%>
+<p id="notice">
+    <%=flash[:notice]%>
+</p>
+<%end%>
+
+<% if @genre.errors.any? %>
+  <div class="error_explanation">
+    <h2><%= @genre.errors.count %>errors prohibited this book from being saved:</h2>
+    <ul>
+      <% @genre.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <%end%>
+    </ul>
+  </div>
+<% end %>
+<h2>ジャンル一覧・追加</h2>
+
+<%=form_with model: @genre, local:true do |f|%>
+  <div class="field">
+    <%= f.label :name, "ジャンル名"%>
+    <%=f.text_field :name%>
+  </div>
+  <div class="actions">
+    <%=f.submit"新規登録"%>
+  </div>
+<%end%>
+
+<table>
+  <thead>
+    <tr>
+      <th>ジャンル</th>
+    </tr>
+  </thead>
+<tobody>
+  <%@genres.each do |genre|%>
+  <tr>
+    <td><%=genre.name%></td>
+    <td><%=link_to "編集する", edit_genre_path(genre.id)%></td>
+  </tr>
+  <%end%>
+</tobody>
+</table>
+
