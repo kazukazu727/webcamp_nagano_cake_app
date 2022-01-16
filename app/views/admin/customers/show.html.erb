@@ -1,7 +1,7 @@
 <div>
   <div>
     <diV>
-      <h3><%= @customer.name %>さんの会員情報</h3>
+      <h3><%= @customer.name %>さんの会員情報 %></h3>
     </diV>
   </div>
   <div>
@@ -17,7 +17,7 @@
           <dt>メールアドレス</dt><dd><%= @customer.email %></dd>
           <dt>会員ステータス</dt>
             <dd>
-              <% if @customer.is_activ == true %>
+              <% if @customer.is_active == true %>
                 <p>有効</p>
               <% else %>
                 <p>退会</p>
