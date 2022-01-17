@@ -14,5 +14,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
   end
+
+  namespace :admin do
+    resources :order, only: [:index, :show, :update]
+  end
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
