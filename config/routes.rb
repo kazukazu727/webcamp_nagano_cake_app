@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :admins
   root to: "homes#top"
   get "home/about" =>"homes#about"
+
+  resources :admins, only: [:top]
+
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
   end
@@ -16,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :order, only: [:index, :show, :update]
+    resources :orders, only: [:index, :show, :update]
   end
 
 

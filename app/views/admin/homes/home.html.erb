@@ -1,0 +1,37 @@
+<div>
+  <div>
+    <div>
+      <h3>注文履歴一覧</h3>
+    </div>
+  </div>
+  <div>
+    <div>
+      <table>
+        <tr>
+          <td>購入日時</td>
+          <td>購入者</td>
+          <td>注文個数</td>
+          <td>注文ステータス</td>
+        </tr>
+        <% @index_orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.created_at.to_s(:datetime_jp),admin_order_path(order) %></td>
+          <td><%= order.customer.name %></td>
+          <td>
+            <%= order_details=Orderdetail.where(order_id:order.id) %>
+              <% count=0 %>
+              <% order_details.each do |order_item| %>
+                <% cout+=order_detail.amount %>
+              <% end %>
+            <%= count %>
+          </td>
+          <td><%= order.status %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div>
+      <%= paginate @index_orders %>
+    </div>
+  </div>
+</div>
