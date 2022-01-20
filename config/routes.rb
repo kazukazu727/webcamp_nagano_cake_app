@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   devise_for :admins
   root to: "homes#top"
   get "home/about" =>"homes#about"
-
-  resources :admins, only: [:top]
+  get "admin" => "admin/homes#top"
 
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]

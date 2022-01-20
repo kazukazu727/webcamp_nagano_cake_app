@@ -1,0 +1,66 @@
+<div>
+  <div>
+    <div>
+      <h2>注文履歴詳細</h2>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <div>
+        <span>購入者  <small><%= link_to @order.customer.name, admin_customer_path(@order.customer) %></small></span>
+      </div>
+      <div>
+        <span>注文日  <small><%= @order.created_at %></small></span>
+      </div>
+      <div>
+        <span>配送先  <small><%= @order.postal_code %><%= @order.address %></small></span>
+      </div>
+      <div>
+        <span>支払方法  <small><%= @order.payment_method %></small></span>
+      </div>
+      <div>
+        <span>注文ステータス</span>
+        <%= form_with model:@order, url: admin_order_path(@order), method: :pach, local:true do |f| %>
+          <%= f.select :status ,Order.statuses.keys.to_a, {},{include_blank: @order.status} %>
+          <%= f.submit "更新",class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <table>
+      <tr>
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>制作ステータス</th>
+      </tr>
+      <% @order_details.each do |order_detail| %>
+        <tr>
+          <td><%= order_detail.item.name %></td>
+          <td><%= include_tax(order_detail.item.price) %></td>
+          <td><%= order_detail.amount %></td>
+          <td><%= include_tax(order_detail.item.price)*order_detail.amount %></td>
+          <td>
+            <%= form_with model:@order_detail, url:admin_order_detail_path(order_detail), method: :pach, local:true do |f| %>
+              <%=f.select :making_status ,OrderDetail.making_statuses.keys.to_a, {},{include_blank: order_detail.making_status} %>
+              <%= f.submit "更新",class: "btn btn-primary" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div>
+    <dl>
+      <dt>商品合計</dt> <dd><%= @order.total_payment-@order.shipping_cost %>円</dd>
+      <dt>送料</dt> <dd><%= @order.shipping_cost %>円</dd>
+      <dt>請求合計金額</dt> <dd><%= @order.total_payment %>円</dd>
+    </dl>
+  </div>
+
+</div>
