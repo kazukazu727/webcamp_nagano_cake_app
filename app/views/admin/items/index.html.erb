@@ -1,28 +1,39 @@
-<h2>商品一覧</h2>
-<table>
-    <tr>
-      <td>商品ID</td>
-      <td>商品名</td>
-      <td>税抜価格</td>
-      <td>ジャンル</td>
-      <td>ステータス</td>
-    </tr>
-  <% @items.each do |item| %>
-    <tr>
-      <td><%= item.id %></td>
-      <td><%= link_to item.name, admin_item_path(item) %></td>
-      <td><%= item.price %>円</td>
-      <td>
-        <% genre=Genre.find(item.genre_id) %>
-        <%= genre.name %>
-      </td>
-      <td>
-        <% if item.is_active == true %>
-          <p>販売中</p>
-        <% else %>
-          <p>販売停止中</p>
-        <% end %>
-      </td>
-    </tr>
-  <%end%>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h3>商品一覧</h3>
+    </div>
+
+    <div class="col-lg-offset-1 col-lg-10">
+      <table class="table">
+        <tr class="active" style="font-weight: bold">
+          <td>商品ID</td>
+          <td>商品名</td>
+          <td>税抜価格</td>
+          <td>ジャンル</td>
+          <td>ステータス</td>
+        </tr>
+        <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item) %></td>
+          <td><%= item.price %>円</td>
+          <td>
+            <% genre=Genre.find(item.genre_id) %>
+            <%= genre.name %>
+          </td>
+          <td>
+            <% if item.is_active == true %>
+              <p>販売中</p>
+            <% else %>
+              <p>販売停止中</p>
+            <% end %>
+          </td>
+        </tr>
+        <%end%>
+      </table>
+
+    </div>
+  </div>
+</div>
+
