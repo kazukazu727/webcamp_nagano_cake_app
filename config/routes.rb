@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :customers
-  devise_for :admin
+  devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+}
+  devise_for :customers, controllers: {
+    sessions:      'customers/sessions',
+    passwords:     'customers/passwords',
+    registrations: 'customers/registrations'
+}
+
   root to: "homes#top"
   get "about" =>"homes#about"
   get "admin" => "admin/homes#top"
@@ -12,11 +21,12 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :update]
   end
 
-  resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdrawal]
-  resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
-  resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
-  resources :addresses, only:[:index, :edit, :create, :update, :destroy]
 
+    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdrawal]
+    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+    resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
+    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+    resources :items, only:[:index, :show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
