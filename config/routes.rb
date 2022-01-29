@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "about" =>"homes#about"
   get "admin" => "admin/homes#top"
+  get "customer/mypage" => "customers#show"
 
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
   end
 
 
-    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdrawal]
+    resources :customers, only: [:edit, :update, :unsubscribe, :withdrawal]
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     resources :orders, only: [:new, :confirm, :thanks, :create, :index, :show]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]

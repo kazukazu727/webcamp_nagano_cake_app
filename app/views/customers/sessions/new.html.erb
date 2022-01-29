@@ -7,7 +7,7 @@
 
   <div class="row">
     <div class="log-lg-5">
-      <h3>会員の方はこちらからログイン</h3>
+      <h5>会員の方はこちらからログイン</h5>
     </div>
   </div>
 
@@ -42,18 +42,13 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-3 col-lg-offset-6">
-      <%#<%= link_to "=>パスワードを忘れた方はこちら、", customers_password_new_path %>
-    </div>
-  </div>
   <div class="submit">
     <%= f.submit"ログイン", class: "btn btn-primary" %>
   </div>
     <% end %>
 
   <div class="col-lg-4">
-    <h3>登録がお済みでない方</h3>
-    <%#<strong><%= link_to"こちら", new_customer_registration_path %></strong>から新規登録を行ってください。
+    <h5>登録がお済みでない方</h5>
+    <strong><%= link_to"こちら", new_customer_registration_path %></strong>から新規登録を行ってください。
   </div>
 </div>
