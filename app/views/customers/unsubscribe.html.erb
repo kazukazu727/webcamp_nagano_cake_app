@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+      <div class="quit_page">
+        <h3>本当に退会しますか？</h3>
+        <p>
+        退会すると、会員情報や<br>
+        これまでの購入履歴が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="unsubscribe_form">
+        <%= link_to "退会しない", customer_path(@customer.id), class: "btn btn-info" %>
+        <%= form_with model: @customer, url: customer_withdrawal_path, method: :patch, local:true do |f| %>
+        <table class="edit_customer">
+            <%= f.hidden_field :is_active, {value: :false} %>
+            <%= f.submit "退会する", class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+</div>

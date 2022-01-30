@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2">
+      <h3>登録情報編集</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+    <%= form_with model: @customer, url: customer_path, method: :patch, local:true do |f| %>
+        <table class="edit_customer">
+          <tr>
+            <th>氏名</th>
+            <td><%= f.text_field :last_name %><%= f.text_field :last_name %></td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td><%= f.text_field :last_name_kana %><%= f.text_field :first_name_kana %></td>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= f.text_field :address %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= f.phone_field :telephone_number %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= f.email_field :email %><td>
+          </tr>
+        </table>
+
+        <div class="row">
+          <div class="col-lg-2">
+            <%= f.submit "登録内容を保存", class: "btn btn-info" %>
+          </div>
+    <% end %>
+          <div class="col-lg-3">
+            <%= link_to "退会する", unsubscribe_customer_path, class: "btn btn-danger" %>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
