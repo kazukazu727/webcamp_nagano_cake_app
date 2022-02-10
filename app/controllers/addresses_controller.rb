@@ -1,7 +1,8 @@
 class AddressesController < ApplicationController
 
   def index
-    @addresses=Address.where(customer_id:[current_customer.id])
+    @customer=current_customer
+    @addresses=Address.where(customer_id:[@customer.id])
 		@address=Address.new
   end
 
@@ -15,7 +16,7 @@ class AddressesController < ApplicationController
   def create
     address=Address.new(address_params)
 		address.save
-		redirect_to address_path
+		redirect_to addresses_path
   end
 
   def update

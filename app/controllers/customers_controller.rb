@@ -1,25 +1,20 @@
 class CustomersController < ApplicationController
 
   def show
-    @customer=Customer.find(params[:id])
-		  if @customer.id != current_customer.id
-			  redirect_to root_path
-		  end
+    @customer=current_customer
   end
 
   def edit
-    @customer=Customer.find(params[:id])
-		if @customer.id != current_customer.id
-			redirect_to root_path
-		end
+    @customer=current_customer
+
   end
 
   def update
-    @customer = Customer.find(params[:id])
+    @customer=current_customer
 		if @customer.update(customer_params)
 			if customer_signed_in?
 				flash[:notice] = "登録情報が更新されました。"
-				redirect_to customer_path(current_customer)
+				redirect_to customer_mypage_path
 			else
 				redirect_to request.referrer
 			end
@@ -30,14 +25,11 @@ class CustomersController < ApplicationController
   end
 
   def unsubscribe
-    @customer = Customer.find(params[:id])
-		if @customer.id != current_customer.id
-			redirect_to root_path
-		end
+    @customer=current_customer
   end
 
   def withdrawal
-    @customer = Customer.find(params[:id])
+    @customer=current_customer
 		@customer.update(customer_params)
 		reset_session
 		flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"

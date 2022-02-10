@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get "about" =>"homes#about"
   get "admin" => "admin/homes#top"
   get "customer/mypage" => "customers#show"
+  get "customer/unsubscribe" => "customers#unsubscribe"
+  patch "withdrawal" => "customers#withdrawal"
   get "orders/confirm" => "orders#confirm"
   post "orders/confirm" => "orders#create"
   get "thanks" => "orders#thanks"

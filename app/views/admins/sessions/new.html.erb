@@ -1,3 +1,9 @@
+<% if flash[:notice] %>
+  <div class="alert alert-info">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-lg-5">
@@ -5,9 +11,9 @@
     </div>
   </div>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="row">
-    <div class="col-lg-2 col-lg-offset3">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="col-lg-2 col-lg-offset-3">
       <span>メールアドレス</span>
     </div>
     <div class="col-lg-3">
@@ -16,7 +22,7 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-2 col-lg-offset3">
+    <div class="col-lg-2 col-lg-offset-3">
       <span>パスワード</span>
     </div>
     <div class="col-lg-3">
@@ -26,7 +32,7 @@
 
   <div class="login">
     <div class="row">
-      <div class="col-lg-3 col-lg-offset4">
+      <div class="col-lg-3 col-lg-offset-4">
         <%= f.submit "ログイン", class: "btn btn-primary" %>
       </div>
     </div>

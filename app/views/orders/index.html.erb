@@ -13,7 +13,7 @@
 	      <th>ステータス</th>
 	      <th>注文詳細</th>
       </tr>
-	    <% orders.each do |order|%>
+	    <% @orders.each do |order|%>
 	    <tr>
 			  <% order_items = OrderItem.where(order_id:order.id) %>
 				  <td style="line-height: 30px;"><%= order.created_at.to_s(:date_jp) %></td>
