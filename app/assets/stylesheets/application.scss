@@ -31,3 +31,19 @@ body,
   min-height: 100vh;
 }
 
+header{
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+}
+
+header .header-bottom{
+    height: 300px;
+}
+
+.nav-item{
+    margin: 0px 10px;
+}
+
+.col{
+    margin: 5px;
+}
