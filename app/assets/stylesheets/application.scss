@@ -24,12 +24,6 @@
 	box-sizing: border-box;
 }
 
-body,
-#wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
 
 header{
     background-color: rgba(0,0,0,0);
@@ -46,4 +40,8 @@ header .header-bottom{
 
 .col{
     margin: 5px;
+}
+
+footer{
+    margin-top: 350px;
 }

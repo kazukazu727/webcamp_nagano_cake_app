@@ -13,6 +13,8 @@
   </div>
   <%= form_with model: @cart_item, local:true do |f| %>
     <%= f.select :amount, {"1":1, "2":2, "3":3, "4":4, "5":5}, include_blank: "個数選択" %>
+    <%= f.hidden_field :item_id, value: @item.id %>
+		<%= f.hidden_field :customer_id, value: current_customer.id %>
+    <%= link_to "カートに入れる", cart_items_path, class: "btn btn-default btn-;g",style: "margin-bottom:30px;" %>
   <% end %>
-  <%= link_to "カートに入れる", cart_items_path, class: "btn btn-default btn-;g",style: "margin-bottom:30px;" %>
 </div>

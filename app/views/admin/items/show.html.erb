@@ -5,10 +5,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-offset-1 col-lg-4">
+    <div class="col-lg-offset-8 col-lg-6">
       <%= attachment_image_tag @item, :image,style: "width:300px; height:200px;" %>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-5 col-offset-3">
       <dl>
         <dt>商品名</dt><dd><%= @item.name %></dd><br>
         <dt>商品説明</dt><dd><%= @item.introduction %></dd><br>
@@ -30,11 +30,10 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-offset-3 col-lg-9">
-      <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-primary" %>
-    </div>
+  <div class="d-grid gap-2 col-5 mx-auto">
+    <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-success btn-lg" %>
   </div>
+
 </div>
 
 

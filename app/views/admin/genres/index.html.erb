@@ -14,32 +14,34 @@
     </ul>
   </div>
 <% end %>
-<div class="container">
+
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-4 col-offset-1">
       <h3>ジャンル一覧・追加</h3>
     </div>
   </div>
-
+<div class="container">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <%=form_with model: @genre, url:admin_genres_path, local:true do |f|%>
       <div class="field">
         <%= f.label :name, "ジャンル名"%>
         <%= f.text_field :name%>
       </div>
+    </div>
+    <div class="col-lg3 col-offset-1 text-center">
       <div class="actions">
-        <%= f.submit"新規登録", class: "btn btn-primary"%>
+        <%= f.submit"新規登録", class: "btn btn-success"%>
       </div>
+    </div>
       <%end%>
     </div>
-  </div>
 
   <div class="row">
     <div class="col-lg-4">
       <table class="table" style="margin-top: 40px">
         <thead>
-          <tr class=active>
+          <tr class="active">
             <th>ジャンル</th>
           </tr>
         </thead>
@@ -47,7 +49,7 @@
         <%@genres.each do |genre|%>
         <tr>
           <td><%=genre.name%></td>
-          <td><%=link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-primary"%></td>
+          <td><%=link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-success"%></td>
         </tr>
         <%end%>
       </tobody>

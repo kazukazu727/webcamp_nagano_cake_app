@@ -27,6 +27,7 @@ class CartItemsController < ApplicationController
 
   def create
     cart_item=CartItem.new(cart_params)
+    cart_item.item_id=current_item.id
 		if cart_item.save
 			redirect_to cart_items_path
 		else
