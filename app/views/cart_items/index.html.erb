@@ -5,7 +5,7 @@
 		</div>
 		<div class="col-lg-4">
 			<% if @cart_items.present? == true %>
-				<%= link_to 'カートを空にする',  destroy_cart_items_path, method: :delete, class: 'btn btn-danger'%>
+				<%= link_to 'カートを空にする', cart_items_path, method: :delete, class: 'btn btn-danger'%>
 			<% end %>
 		</div>
 	</div>
@@ -26,17 +26,17 @@
 			<% @cart_items.each do |cart| %>
 			<tbody>
 			<tr>
-				<td style="line-height: 30px;"><%= attachment_image_tag cart.item, :item_image , style: "width: 50px; height: 30px;", class: "pull-left"%> <%= cart.item.name %></td>
-				<td style="line-height: 30px;"><%= include_tax(cart.item.price) %>円</td>
+				<td style="line-height: 30px;"><%= attachment_image_tag cart.item, :image , style: "width: 50px; height: 30px;", class: "pull-left"%> <%= cart.item.name %></td>
+				<td style="line-height: 30px;"><%= cart.item.add_tax_price %>円</td>
 				<td><%= form_with model:cart, url:cart_item_path(cart), method: :patch do |f| %>
 					<%= f.hidden_field :item_id, value: cart.item.id %>
 					<%= f.hidden_field :customer_id, value: current_customer.id %>
-					<%= f.text_field :count , value:cart.count %>
+					<%= f.text_field :amount , value:cart.amount %>
 					<%= f.submit "変更", class: 'btn btn-primary'%>
 					<% end %></td>
-				<td style="line-height: 30px;"><%= include_tax(cart.item.price) * cart.count %>円</td>
-				<td style="line-height: 30px;"><%= link_to '削除する', destroy_cart_item_path(cart), method: :delete, class: 'btn btn-danger' %></td>
-				<% total += include_tax(cart.item.price) * cart.count %>
+				<td style="line-height: 30px;"><%= cart.item.add_tax_price * cart.amount %>円</td>
+				<td style="line-height: 30px;"><%= link_to '削除する', cart_item_path(cart), method: :delete, class: 'btn btn-danger' %></td>
+				<% total += cart.item.add_tax_price * cart.amount %>
 			</tr>
 			<% end %>
 			</tbody>
@@ -54,7 +54,7 @@
 		  </table>
   	</div>
 	  <% if @cart_items.present? == true %>
-		  <%= link_to  orders_new_path ,class: 'btn btn-success btn-lg' do %>
+		  <%= link_to  new_order_path ,class: 'btn btn-success btn-lg' do %>
 			  <p style= "margin: 0; padding: 10px 50px">情報入力へ進む</p>
 		  <% end %>
 	  <% end %>

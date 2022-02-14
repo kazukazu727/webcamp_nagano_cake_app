@@ -20,14 +20,13 @@ class CartItemsController < ApplicationController
   def destroy_all
     cart_items=CartItem.where(customer_id:[current_customer.id])
 		cart_items.each do |cart_item|
-			cart_item.destroy
+			cart_items.destroy_all
 		end
 		redirect_to cart_items_path
   end
 
   def create
-    cart_item=CartItem.new(cart_params)
-    cart_item.item_id=current_item.id
+    cart_item=CartItem.new(cart_item_params)
 		if cart_item.save
 			redirect_to cart_items_path
 		else
@@ -37,7 +36,7 @@ class CartItemsController < ApplicationController
   end
 
   private
-    def cart_items
+    def cart_item_params
       params.require(:cart_item).permit(:item_id, :amount, :customer_id)
     end
 

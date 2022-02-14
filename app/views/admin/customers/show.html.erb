@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <diV class="col-lg-3">
-      <h3><%= @customer.name %>さんの会員情報 %></h3>
+      <h3><%= (@customer.last_name+@customer.first_name) %>さんの会員情報 </h3>
     </diV>
   </div>
   <div class="row">
@@ -9,7 +9,7 @@
       <table class="admin_show_customer">
         <dl class="active">
           <dt>会員ID</dt><dd><%= @customer.id %></dd>
-          <dt>氏名</dt><dd><%= @custome.first_name %><%= @customer.last_name %></dd>
+          <dt>氏名</dt><dd><%= @customer.first_name %><%= @customer.last_name %></dd>
           <dt>フリガナ</dt><dd><%= @customer.first_name_kana %><%= @customer.last_name_kana %></dd>
           <dt>郵便番号</dt><dd><%= @customer.postal_code %></dd>
           <dt>住所</dt><dd><%= @customer.address %></dd>
@@ -32,7 +32,7 @@
       <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-info" %>
     </div>
     <div>
-      <%= link_to "注文履歴一覧を見る", admin_order_path(customer_id: @customer.id), class: "btn btn-info" %>
+      <%= link_to "注文履歴一覧を見る", admin_path, class: "btn btn-info" %>
     </div>
   </div>
 </div>

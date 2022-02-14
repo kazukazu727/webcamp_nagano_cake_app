@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "orders/confirm" => "orders#confirm"
   post "orders/confirm" => "orders#create"
   get "thanks" => "orders#thanks"
+  delete "cart_items" => "cart_items#destroy_all"
 
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
 
 
     resources :customers, only: [:edit, :update, :unsubscribe, :withdrawal]
-    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+    resources :cart_items, only: [:index, :update, :destroy, :create]
     resources :orders, only: [:new, :create, :index, :show]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
     resources :items, only:[:index, :show]
