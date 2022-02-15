@@ -35,12 +35,12 @@
 				    <th>個数</th>
 				    <th>小計</th>
 			    </tr>
-					<% @order_items.each do |order_item| %>
+					<% @order_details.each do |order_item| %>
 					  <tr>
 						  <td><%= order_item.item.name %></td>
-						  <td><%= include_tax(order_item.item.price) %>円</td>
+						  <td><%= order_item.item.add_tax_price %>円</td>
 						  <td><%= order_item.amount %></td>
-						  <td><%= include_tax(order_item.item.price) * order_item.amount %>円</td>
+						  <td><%= order_item.item.add_tax_price * order_item.amount %>円</td>
 					  </tr>
 					<% end %>
 			</table>

@@ -17,19 +17,15 @@ class OrdersController < ApplicationController
   def create
      @cart_items=CartItem.where(customer_id:[current_customer.id])
      @order=Order.new(order_params)
-     @order_detail=Order_detail.new(order_detail_params)
+     #@order_detail=Order_detail.new(order_detail_params)
      @shipping_cost=800
      if params[:page] == "new"
        render 'confirm'
      else
-       if @order.payment_method == "クレジットカード"
-          @order.order_status = 1
-       end
        if @order.save
           @cart_items.each do |cart_item|
-          OrderItem.create!(order_id: @order.id, count:cart_item.count, item_id:cart_item.item_id, price:cart_item.item.price)
-          @order_detail.save
-       end
+          OrderDetail.create!(order_id: @order.id, amount: cart_item.amount, item_id: cart_item.item_id, price: cart_item.item.price)
+          end
           @cart_items.destroy_all
           redirect_to thanks_path
        else
@@ -44,20 +40,16 @@ class OrdersController < ApplicationController
   end
 
   def show
-     @order = Order.find(params[:id])
+     @order=Order.find(params[:id])
       if @order.customer_id != current_customer.id
          redirect_to root_path
       end
-      @order_items = OrderItem.where(order_id: @order.id)
+      @order_details = OrderDetail.where(order_id: @order.id)
   end
 
   private
   def order_params
     params.require(:order).permit(:customer_id, :postal_code, :address, :payment_method, :status, :shipping_cost, :name, :total_payment)
-  end
-
-  def order_detail_params
-    params.require(:order).permit(:order_id, :item_id, :price, :amount, :making_status)
   end
 
 end

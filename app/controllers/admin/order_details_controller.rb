@@ -1,5 +1,10 @@
 class Admin::OrderDetailsController < ApplicationController
 
+    def show
+        @order=Order.find(params[:id])
+        @order_details=OrderDetail.where(order_id: @order.id)
+    end
+
     def update
         @order_detail=OrderDetail.find(params[:id])
         order=order_detail.order
@@ -14,7 +19,11 @@ class Admin::OrderDetailsController < ApplicationController
 
     private
         def order_detail_params
-            params.require(:order_detail).permit(:making_status)
+            params.require(:order_detail).permit(:order_id, :item_id, :price, :amount, :making_status)
+        end
+
+        def order_params
+            params.require(:order).permit(:customer_id, :postal_code, :address, :payment_method, :status, :shipping_cost, :name, :total_payment)
         end
 end
 

@@ -3,7 +3,7 @@
     <div="col-lg-3">
       <h3>注文履歴一覧</h3>
     </div>
-    
+
     <div class="row">
     <div class="col-lg-offset-1 col-lg-10">
       <table class="table">
@@ -15,15 +15,15 @@
         </tr>
         <% @index_orders.each do |order| %>
         <tr>
-          <td><%= link_to order.created_at.to_s(:datetime_jp),admin_order_path(order) %></td>
-          <td><%= order.customer.name %></td>
+          <td><%= link_to order.created_at.to_s(:datetime_jp), admin_order_detail_path(order) %></td>
+          <td><%= order.customer.last_name %></td>
           <td>
-            <%= order_details=Orderdetail.where(order_id:order.id) %>
-              <% count=0 %>
+            <%= order_details=OrderDetail.where(order_id:order.id) %>
+              <% amount=0 %>
               <% order_details.each do |order_item| %>
-                <% cout+=order_detail.amount %>
+                <% amount+=order_item.amount %>
               <% end %>
-            <%= count %>
+            <%= amount %>
           </td>
           <td><%= order.status %></td>
         </tr>

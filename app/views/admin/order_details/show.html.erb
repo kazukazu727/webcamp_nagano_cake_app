@@ -21,7 +21,7 @@
       </div>
       <div class="row">
         <span class="orders">注文ステータス</span>
-        <%= form_with model:@order, url: admin_order_path(@order), method: :pach, local:true do |f| %>
+        <%= form_with model: @order, url: admin_order_detail_path(@order), method: :patch, local:true do |f| %>
           <%= f.select :status ,Order.statuses.keys.to_a, {},{include_blank: @order.status} %>
           <%= f.submit "更新",class: "btn btn-primary" %>
         <% end %>
@@ -41,11 +41,11 @@
       <% @order_details.each do |order_detail| %>
         <tr>
           <td><%= order_detail.item.name %></td>
-          <td><%= include_tax(order_detail.item.price) %></td>
+          <td><%= order_detail.item.add_tax_price %></td>
           <td><%= order_detail.amount %></td>
-          <td><%= include_tax(order_detail.item.price)*order_detail.amount %></td>
+          <td><%= order_detail.item.add_tax_price*order_detail.amount %></td>
           <td>
-            <%= form_with model:@order_detail, url:admin_order_detail_path(order_detail), method: :pach, local:true do |f| %>
+            <%= form_with model: order_detail, url: admin_order_detail_path(@order), method: :pach, local:true do |f| %>
               <%=f.select :making_status ,OrderDetail.making_statuses.keys.to_a, {},{include_blank: order_detail.making_status} %>
               <%= f.submit "更新",class: "btn btn-primary" %>
             <% end %>

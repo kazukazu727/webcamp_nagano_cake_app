@@ -1,7 +1,7 @@
 class Admin::HomesController < ApplicationController
 
 def top
-    orders=Order.where(customer_id: params[:customer_id])
+    orders=Order.all
     @index_orders=orders.order(created_at: "DESC").page(params[:page])
 end
 
