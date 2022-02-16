@@ -46,8 +46,8 @@
 				<%= params[:order][:email] %>
 				<% address = params[:order][:email] %>
 			<% elsif params[:order][:address] == "new" %>
-				<%= params[:order][:newpostcode] %><%= params[:order][:newaddress] %><%= params[:order][:newname] %>
-				<% address = params[:order][:newpostcode] +" "+ params[:order][:newaddress] +" "+ params[:order][:newname] %>
+				<%= params[:order][:newpostal_code] %><%= params[:order][:newaddress] %><%= params[:order][:newname] %>
+				<% address = params[:order][:newpostal_code] +" "+ params[:order][:newaddress] +" "+ params[:order][:newname] %>
 			<% else %>
 				<%= params[:order][:address] %>
 				<% address = params[:order][:address] %>

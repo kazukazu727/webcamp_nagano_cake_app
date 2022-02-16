@@ -15,10 +15,13 @@
         </tr>
         <% @index_orders.each do |order| %>
         <tr>
-          <td><%= link_to order.created_at.to_s(:datetime_jp), admin_order_detail_path(order) %></td>
-          <td><%= order.customer.last_name %></td>
           <td>
-            <%= order_details=OrderDetail.where(order_id:order.id) %>
+            <%= link_to "#{l order.created_at}", admin_order_detail_path(order) %>
+            <%#= link_to order.created_at.to_s(:datetime_jp), admin_order_detail_path(order) %>
+          </td>
+          <td><%= order.customer.name %></td>
+          <td>
+            <% order_details=OrderDetail.where(order_id:order.id) %>
               <% amount=0 %>
               <% order_details.each do |order_item| %>
                 <% amount+=order_item.amount %>

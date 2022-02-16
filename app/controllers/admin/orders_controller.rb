@@ -6,8 +6,9 @@ def show
 end
 
 def update
+  @order=Order.find(params[:id])
   if @order.update(order_params)
-    redirect_to admin_order_path(@order)
+    redirect_to admin_order_detail_path(@order)
   else
     render :show, alert: "対応ステータスを更新できませんでした"
   end

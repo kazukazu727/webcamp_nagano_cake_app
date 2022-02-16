@@ -28,10 +28,10 @@
 			<tr>
 				<td style="line-height: 30px;"><%= attachment_image_tag cart.item, :image , style: "width: 50px; height: 30px;", class: "pull-left"%> <%= cart.item.name %></td>
 				<td style="line-height: 30px;"><%= cart.item.add_tax_price %>円</td>
-				<td><%= form_with model:cart, url:cart_item_path(cart), method: :patch do |f| %>
+				<td><%= form_with model: cart, url:cart_item_path(cart), method: :patch do |f| %>
 					<%= f.hidden_field :item_id, value: cart.item.id %>
 					<%= f.hidden_field :customer_id, value: current_customer.id %>
-					<%= f.text_field :amount , value:cart.amount %>
+					<%= f.select :amount, *[1..20], value:cart.amount %>
 					<%= f.submit "変更", class: 'btn btn-primary'%>
 					<% end %></td>
 				<td style="line-height: 30px;"><%= cart.item.add_tax_price * cart.amount %>円</td>
