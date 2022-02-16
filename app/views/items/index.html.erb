@@ -1,19 +1,27 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-3">
-      <h1 style="font-weight: bold">商品一覧（ 全<%= @items.length %>件 ）</span></h1>
-    </div>
-  </div>
-
-  <div class="row">
-  <% @new_items.each do |item| %>
-    <div class="col-lg-3">
-    <tr>
-      <td><%= attachment_image_tag item, :image,style: "width:150px; height:100px;" %></td>
-      <td><%= link_to item.name, item_path(item) %></td>
-      <td><%= item.price %>円</td>
-    </tr>
-  <% end %>
+    <div class="col-lg-4">
+      <h2 style="font-weight: bold">商品一覧（ 全<%= @items.length %>件 ）</span></h2>
     </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="row">
+  <% @new_items.each do |item| %>
+    <div class="col-lg-3">
+    <tr class="container">
+      <td class="row"><%= attachment_image_tag item, :image,style: "width:150px; height:100px;" %></td>
+      <div class="col">
+        <td><%= link_to item.name, item_path(item) %></td>
+      <td><%= item.price %>円</td>
+      </div>
+    </tr>
+    </div>
+  <% end %>
+  </div>
+  <div class="col-lg-offset-2 col-lg-10">
+		<%= paginate @index_items %>
+	</div>
+</div>
+

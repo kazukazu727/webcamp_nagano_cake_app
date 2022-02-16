@@ -45,7 +45,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-4">
+		<div class="col-lg-7">
 			<%= link_to '買い物を続ける', root_path, class: 'btn btn-primary' %>
 		</div>
 	  <div class="col-lg-3 col-xs-offset-4">
@@ -53,8 +53,10 @@
 		    <tr><th class="active">合計金額</th><td><%= total %>円</td></tr>
 		  </table>
   	</div>
+  </div>
+  <div class="row d-grid gap-2 col-6 mx-auto">
 	  <% if @cart_items.present? == true %>
-		  <%= link_to  new_order_path ,class: 'btn btn-success btn-lg' do %>
+		  <%= link_to  new_order_path ,class: 'btn btn-success btn-md' do %>
 			  <p style= "margin: 0; padding: 10px 50px">情報入力へ進む</p>
 		  <% end %>
 	  <% end %>

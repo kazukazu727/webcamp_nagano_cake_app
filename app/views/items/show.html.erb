@@ -1,20 +1,18 @@
 <div class="container">
-  <div class="col-lg-5">
-    <%= attachment_image_tag @item, :image,style: "width: 350px; height: 250px; margin-top:80px;" %>
+  <div class="row">
+    <div class="col-lg-5">
+      <%= attachment_image_tag @item, :image,style: "width: 350px; height: 250px; margin-top:80px;" %>
+    </div>
+    <div class="col-lg-5">
+      <h1 style="font-weight: bold; margin-top:100px;"><%= @item.name%></h1>
+      <p><%= @item.introduction %></p>
+      <p><strong>¥ <%= @item.add_tax_price.to_s(:delimited) %></strong>(税込)</p>
+      <%= form_with model: @cart_item, local:true do |f| %>
+        <%= f.select :amount, *[1..20], include_blank: "個数選択"%>
+        <%= f.hidden_field :item_id, value: @item.id %>
+		    <%= f.hidden_field :customer_id, value: current_customer.id %>
+        <%= f.submit "カートに入れる", class: "btn btn-default btn-sm btn-success" %>
+      <% end %>
+    </div>
   </div>
-  <div class="col-lg-5">
-    <h1 style="font-weight: bold; margin-top:100px;"><%= @item.name%></h1>
-  </div>
-  <div class="col-lg-5">
-    <p><%= @item.introduction %></p>
-  </div>
-  <div class="col-lg-5">
-    <p><strong>¥ <%= @item.add_tax_price.to_s(:delimited) %></strong>(税込)</p>
-  </div>
-  <%= form_with model: @cart_item, local:true do |f| %>
-    <%= f.select :amount, *[1..20], include_blank: "個数選択" %>
-    <%= f.hidden_field :item_id, value: @item.id %>
-		<%= f.hidden_field :customer_id, value: current_customer.id %>
-    <%= f.submit "カートに入れる", class: "btn btn-default btn-lg",style: "margin-bottom:30px;" %>
-  <% end %>
 </div>

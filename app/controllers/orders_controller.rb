@@ -18,7 +18,6 @@ class OrdersController < ApplicationController
   def create
      @cart_items=CartItem.where(customer_id:[current_customer.id])
      @order=Order.new(order_params)
-     #@order_detail=Order_detail.new(order_detail_params)
      @shipping_cost=800
      if params[:page] == "new"
        render 'confirm'

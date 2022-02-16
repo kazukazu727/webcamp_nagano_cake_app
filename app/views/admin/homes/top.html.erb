@@ -17,7 +17,6 @@
         <tr>
           <td>
             <%= link_to "#{l order.created_at}", admin_order_detail_path(order) %>
-            <%#= link_to order.created_at.to_s(:datetime_jp), admin_order_detail_path(order) %>
           </td>
           <td><%= order.customer.name %></td>
           <td>

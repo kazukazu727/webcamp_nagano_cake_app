@@ -16,7 +16,7 @@
 	    <% @orders.each do |order|%>
 	    <tr>
 			  <% order_details = OrderDetail.where(order_id:order.id) %>
-				  <td style="line-height: 30px;"><%= order.created_at.to_s(:date_jp) %></td>
+				  <td style="line-height: 30px;"><%= l order.created_at %></td>
 				  <td style="line-height: 30px;">〒 <%= order.address %></td>
 				  <td style="line-height: 30px;"><% order_details.each do |order_item| %>
 					  <%= order_item.item.name %><br>

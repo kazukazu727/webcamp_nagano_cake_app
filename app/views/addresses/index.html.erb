@@ -3,14 +3,34 @@
     <div class="col-lg-4">
 	    <h4>配送先登録 / 一覧</h4>
     </div>
-    <%= form_with model: @address, url: addresses_path, method: :post, local:true do |f| %>
-	    <div class="col-lg-12"><div class="col-lg-2"><%= f.label :郵便番号 %></div><div class="col-lg-2"><%= f.text_field :postal_code %></div></div>
-	    <div class="col-lg-12"><div class="col-lg-2"><%= f.label :住所 %></div><div class="col-lg-2"><%= f.text_field :address %></div></div>
-	    <div class="col-lg-12"><div class="col-lg-2"><%= f.label :宛名 %></div><div class="col-lg-2"><%= f.text_field :name %></div><div class="col-lg-4">
-		    <%= f.submit "登録する", class: "btn btn-info" %>
+  </div>
+</div>
+
+<%= form_with model: @address, url: addresses_path, method: :post, local:true do |f| %>
+<div class="container">
+  <div class="row">
+	  <div class="col-lg-12">
+	    <div class="row">
+	      <div class="col-lg-4"><%= f.label :郵便番号 %></div>
+	      <div class="col-lg-8"><%= f.text_field :postal_code %></div>
 	    </div>
+	  </div>
+	  <div class="col-lg-12">
+	    <div class="row">
+	      <div class="col-lg-4"><%= f.label :住所 %></div>
+	      <div class="col-lg-8"><%= f.text_field :address %></div>
 	    </div>
-    <% end %>
+	  </div>
+	  <div class="col-lg-12">
+	    <div class="row">
+	      <div class="col-lg-4"><%= f.label :宛名 %></div>
+	      <div class="col-lg-8"><%= f.text_field :name %></div>
+	    </div>
+	  </div>
+	  <div class="col-lg-9 d-grid gap-2 d-md-flex justify-content-md-end">
+		  <%= f.submit "新規登録", class: "btn btn-success" %>
+		  <% end %>
+	  </div>
   </div>
 
   <div class="col-lg-9">
@@ -27,7 +47,7 @@
 	        <td style="line-height: 30px;"><%= m.address %></td>
 	        <td style="line-height: 30px;"><%= m.name %></td>
 	        <td style="line-height: 30px;">
-		        <%= link_to '編集する', edit_address_path(m) ,class: "btn btn-primary"%>
+		        <%= link_to '編集する', edit_address_path(m) ,class: "btn btn-success"%>
 		        <%= link_to '削除する', address_path(m), method: :delete ,class: "btn btn-danger"%>
 	        </td>
         </tr>
