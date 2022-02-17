@@ -44,15 +44,14 @@
 	<div class="col-lg-12"><h4 class="pull-left">お届け先</h4></div>
 		<% address = ''%>
 	<div class="col-lg-12"><p class="pull-left">〒
-			<% if params[:order][:address] == "mail" %>
-				<%= params[:order][:mail_address] %>
-				<% address = params[:order][:mail_address] %>
-			<% elsif params[:order][:address] == "new" %>
+			<% if params[:order][:address_option] == "mail" %>
+				<%= params[:order][:address] %>
+				<% address = params[:order][:address] %>
+			<% elsif params[:order][:address_option] == "new" %>
 				<%= params[:order][:newpostal_code] %><%= params[:order][:newaddress] %><%= params[:order][:newname] %>
 				<% address = params[:order][:newpostal_code] +" "+ params[:order][:newaddress] +" "+ params[:order][:newname] %>
 			<% else %>
-				<%= params[:order][:address] %>
-				<% address = params[:order][:address] %>
+				<%= current_customer.postal_code%> <%=current_customer.address %> <%=current_customer.name%>
 			<% end %>
 		</p></div>
 		</div>
@@ -61,6 +60,7 @@
 			<%= f.hidden_field :shipping_cost , value: @shipping_cost %>
 			<%= f.hidden_field :total_payment , value: total_payment %>
 			<%= f.hidden_field :address, value: address %>
+			<%= f.hidden_field :address_option, value: params[:order][:address_option] %>
 			<%= f.hidden_field :payment_method, value: params[:order][:payment_method] %>
 		<div class="d-grid gap-2 col-7 mx-auto">
 			<%= f.submit '購入を確定する', class: 'btn btn-success btn-lg' %>

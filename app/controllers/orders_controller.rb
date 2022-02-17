@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
+   before_action :authenticate_customer!
 
   def new
      @cart_items=CartItem.where(customer_id:[current_customer.id])
      @order=Order.new
-     @addresses=Address.where(customer_id:[current_customer.id])
+     @addresses=current_customer.addresses.all
   end
 
   def confirm
@@ -18,6 +19,11 @@ class OrdersController < ApplicationController
   def create
      @cart_items=CartItem.where(customer_id:[current_customer.id])
      @order=Order.new(order_params)
+     if params[:order][:address_option]=="user"
+       @order.postal_code=current_customer.postal_code
+       @order.address=current_customer.address
+       @order.name=current_customer.name
+     end
      @shipping_cost=800
      if params[:page] == "new"
        render 'confirm'
