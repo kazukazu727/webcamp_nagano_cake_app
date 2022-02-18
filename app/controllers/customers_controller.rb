@@ -7,6 +7,12 @@ class CustomersController < ApplicationController
 
   def edit
     @customer=current_customer
+  end
+
+  def create
+    @customer=Customer.new(customer_params)
+    @customer.save
+    redirect_to edit_customer_path(@customer)
 
   end
 
@@ -31,7 +37,7 @@ class CustomersController < ApplicationController
 
   def withdrawal
     @customer=current_customer
-		@customer.update(customer_params)
+		@customer.update(is_active: false)
 		reset_session
 		flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
 		redirect_to root_path

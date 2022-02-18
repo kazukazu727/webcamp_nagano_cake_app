@@ -1,5 +1,4 @@
 class Admin::OrderDetailsController < ApplicationController
-  before_action :authenticate_admin!
 
     def show
         @order=Order.find(params[:id])
@@ -7,15 +6,24 @@ class Admin::OrderDetailsController < ApplicationController
     end
 
     def update
-        @order_detail=OrderDetail.find_by(params[:order_id])
+        @order_detail = OrderDetail.find(params[:id])
         @order=@order_detail.order
-        if@order_detail.update(order_detail_params)
-            redirect_to admin_order_detail_path(@order)
-        else
-            render :show, alert: "対応ステータスを更新できませんでした"
-        end
+        @order_details=OrderDetail.where(order_id: @order.id)
+        @order_detail.update(order_detail_params)
+            if @order_details.where(making_status: 2).count >= 1
+               @order.update!(status: 2)
+               @order.save
+            end
+
+            if @order.order_details.count == @order_details.where(making_status: 3).count
+               @order.update!(status: 3)
+               @order.save
+            end
+	    redirect_to admin_order_detail_path(@order)
 
     end
+
+
 
     private
         def order_detail_params

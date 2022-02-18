@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   def index
     @items=Item.where(is_active:true)
-    @new_items = @items.limit(4).order(updated_at: "DESC")
+    @new_items = @items.limit(8).order(updated_at: "DESC")
     @index_items = @items.order(:updated_at).page(params[:page])
   end
 

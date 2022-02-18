@@ -8,11 +8,14 @@ end
 
 def update
   @order=Order.find(params[:id])
-  if @order.update(order_params)
-    redirect_to admin_order_detail_path(@order)
-  else
-    render :show, alert: "対応ステータスを更新できませんでした"
-  end
+  @order_detail=OrderDetail.where(order_id: [@order.id])
+  @order.update(order_params)
+    if params[:order][:status] == "入金確認"
+      @order_detail.each do |order_detail|
+      order_detail.update!(making_status: 1)
+      end
+    end
+  redirect_to admin_order_detail_path(@order)
 
 end
 
